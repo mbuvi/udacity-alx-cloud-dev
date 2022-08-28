@@ -1,4 +1,4 @@
-import express from 'express';
+import express, {Request, Response} from 'express';
 import bodyParser from 'body-parser';
 import {filterImageFromURL, deleteLocalFiles} from './util/util';
 
@@ -28,10 +28,10 @@ import {filterImageFromURL, deleteLocalFiles} from './util/util';
   //   the filtered image file [!!TIP res.sendFile(filteredpath); might be useful]
 
   /**************************************************************************** */
-app.get('/filteredimage', async(req, res) => {
+app.get('/filteredimage', async(req: Request, res: Response) => {
 
   //obtain img URL from params
-  const image_url  = req.query.image_url;
+  let image_url  = req.query.image_url;
 
   //validate URL
     if (typeof image_url !== "string") {
